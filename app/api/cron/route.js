@@ -2,12 +2,12 @@ import { days } from "@/app/days";
 import { getWooperAccount, saveWooper } from "@/app/mongo";
 import { NextResponse } from "next/server";
 
-export async function GET(req, _) {
-  // if (
-  //   req.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
-  // ) {
-  //   return res.status(401).end("Unauthorized");
-  // }
+export async function GET(req, response) {
+  if (
+    req.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return NextResponse.json({ ok: false }, { status: 403 });
+  }
 
   const day = days[new Date().getDay()];
 
