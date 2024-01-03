@@ -2,7 +2,7 @@ import { days } from "@/app/days";
 import { getWooperAccount, saveWooper } from "@/app/mongo";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+export async function GET(req, _) {
   // if (
   //   req.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
   // ) {
