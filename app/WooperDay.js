@@ -10,8 +10,8 @@ export async function WooperDay(props) {
       <h2>{props.day}</h2>
       {data ? (
         <div>
-          <h3>{data.user.destinyUserInfo.bungieGlobalDisplayName}</h3>
-          <h4>{data.clan.name}</h4>
+          <h3>{data.user?.destinyUserInfo.bungieGlobalDisplayName}</h3>
+          <h4>{data.clan?.name}</h4>
         </div>
       ) : (
         <h3>Not Authorized</h3>

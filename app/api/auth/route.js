@@ -60,16 +60,22 @@ export async function GET(request) {
       return NextResponse.redirect(host + "?error=" + "You are not Wauby");
     }
 
-    const clan = await fetch(
+    const clanRes = await fetch(
       `https://www.bungie.net/Platform/GroupV2/User/254/${body.membership_id}/0/1/`,
       {
         headers: {
           "X-API-Key": process.env.API_KEY,
         },
       }
-    )
-      .then((data) => data.json())
-      .then((json) => json.Response.results[0]);
+    );
+
+    if (!clanRes.ok) {
+      return NextResponse.redirect(
+        host + "?error=" + encodeURIComponent("No clan found")
+      );
+    }
+    const clan = await clanRes.json().then((json) => json.Response.results[0]);
+    console.log(clan);
 
     if (days.includes(state)) {
       await saveWooper(state, {
