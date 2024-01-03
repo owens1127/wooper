@@ -27,7 +27,7 @@ export default async function Home() {
         <h3>
           <Link
             style={{ color: "pink" }}
-            href={`https://www.bungie.net/en/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=admin`}
+            href={`https://www.bungie.net/en/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=admin&reauth=true`}
           >
             Log In
           </Link>

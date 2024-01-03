@@ -56,6 +56,10 @@ export async function GET(request) {
 
     const body = await data.json();
 
+    if (state === "admin" && body.membership_id !== process.env.BUNGIE_ID) {
+      return NextResponse.redirect(host + "?error=" + "You are not Wauby");
+    }
+
     const clan = await fetch(
       `https://www.bungie.net/Platform/GroupV2/User/254/${body.membership_id}/0/1/`,
       {

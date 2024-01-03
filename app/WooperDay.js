@@ -19,7 +19,7 @@ export async function WooperDay(props) {
       {isAuthed() && (
         <div>
           <Link
-            href={`https://www.bungie.net/en/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=${props.day}`}
+            href={`https://www.bungie.net/en/oauth/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=${props.day}&reauth=true`}
           >
             <button>Authorize</button>
           </Link>
