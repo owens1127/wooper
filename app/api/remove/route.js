@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
 export async function GET(request) {
-  const host = process.env.VERCEL_URL ?? "http://localhost:3000";
+  const host = new URL("/", request.url);
   const params = request.nextUrl.searchParams;
 
   const cookieStore = cookies();

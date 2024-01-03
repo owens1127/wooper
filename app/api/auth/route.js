@@ -13,7 +13,7 @@ const days = [
 ];
 
 export async function GET(request) {
-  const host = process.env.VERCEL_URL ?? new URL("/", request.url);
+  const host = new URL("/", request.url);
 
   try {
     const params = request.nextUrl.searchParams;
