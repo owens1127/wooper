@@ -3,16 +3,7 @@ import { WooperDay } from "./WooperDay";
 import { isAuthed } from "./auth";
 import Link from "next/link";
 import { ErrorBar } from "./ErrorBar";
-
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+import { days } from "./days";
 
 export default async function Home() {
   return (

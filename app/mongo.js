@@ -45,3 +45,11 @@ export async function deleteWooperData(day) {
     .collection("accounts")
     .deleteOne({ day: day.toLowerCase() });
 }
+
+export async function getWooperAccount(day) {
+  const result = await client
+    .db("wooper")
+    .collection("accounts")
+    .findOne({ day: day.toLowerCase() });
+  return result?.data ?? null;
+}

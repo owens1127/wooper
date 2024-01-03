@@ -1,16 +1,7 @@
+import { days } from "@/app/days";
 import { saveWooper } from "@/app/mongo";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-
-const days = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
 
 export async function GET(request) {
   const host = new URL("/", request.url);
@@ -23,9 +14,9 @@ export async function GET(request) {
     if (state !== "admin") {
       if (
         cookieStore.get("wooper-secure").value !== process.env.SECRET_KEY ||
-        !days.includes(state)
+        !days.map((d) => d.toLowerCase()).includes(state)
       ) {
-        return NextResponse.redirect(host + "?error=" + "Unauthorized");
+        return NextResponse.redirect(host + "?error=" + "UnauthorizedAA");
       }
     }
 
@@ -75,9 +66,8 @@ export async function GET(request) {
       );
     }
     const clan = await clanRes.json().then((json) => json.Response.results[0]);
-    console.log(clan);
 
-    if (days.includes(state)) {
+    if (days.map((d) => d.toLowerCase()).includes(state)) {
       await saveWooper(state, {
         ...body,
         expires_at: Date.now() + body.expires_in * 1000,
