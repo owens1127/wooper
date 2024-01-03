@@ -16,7 +16,8 @@ export async function GET(request) {
   const host = process.env.VERCEL_URL ?? new URL("/", request.url);
 
   try {
-    const state = request.nextUrl.searchParams.get("state").toLowerCase();
+    const params = request.nextUrl.searchParams;
+    const state = params.get("state").toLowerCase();
     const cookieStore = cookies();
 
     if (state !== "admin") {
@@ -37,7 +38,7 @@ export async function GET(request) {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         body: new URLSearchParams({
-          code: request.nextUrl.searchParams.get("code"),
+          code: params.get("code"),
           grant_type: "authorization_code",
           client_id: process.env.CLIENT_ID,
           client_secret: process.env.CLIENT_SECRET,
