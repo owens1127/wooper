@@ -51,7 +51,7 @@ export async function GET(request) {
       console.log(err);
       console.error("Failed to get access token");
 
-      return NextResponse.redirect(host + "?error=" + err);
+      return NextResponse.redirect(host + "?error=" + encodeURIComponent(err));
     }
 
     const body = await data.json();
@@ -87,6 +87,8 @@ export async function GET(request) {
       return res;
     }
   } catch (e) {
-    return NextResponse.redirect(host + "?error=" + e.message);
+    return NextResponse.redirect(
+      host + "?error=" + encodeURIComponent(e.message)
+    );
   }
 }

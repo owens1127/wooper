@@ -17,6 +17,8 @@ export async function GET(request) {
     revalidatePath("/");
     return NextResponse.redirect(host);
   } catch (e) {
-    return NextResponse.redirect(host + "?error=" + e.message);
+    return NextResponse.redirect(
+      host + "?error=" + encodeURIComponent(e.message)
+    );
   }
 }
