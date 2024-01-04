@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 
-export async function ErrorBar() {
+export function ErrorBar() {
   const searchParams = useSearchParams();
   const err = searchParams.get("error");
 
