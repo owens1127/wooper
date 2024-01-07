@@ -10,9 +10,11 @@ const client = new MongoClient(uri, {
   },
 });
 
+const db = process.env.NODE_ENV === "production" ? "wooper" : "wooper_dev";
+
 export async function saveWooper(day, data) {
   await client
-    .db("wooper")
+    .db(db)
     .collection("accounts")
     .updateOne(
       {
@@ -25,7 +27,7 @@ export async function saveWooper(day, data) {
 
 export async function getWooperData(day) {
   const result = await client
-    .db("wooper")
+    .db(db)
     .collection("accounts")
     .findOne({ day: day.toLowerCase() })
     .then((doc) =>
@@ -41,14 +43,14 @@ export async function getWooperData(day) {
 
 export async function deleteWooperData(day) {
   await client
-    .db("wooper")
+    .db(db)
     .collection("accounts")
     .deleteOne({ day: day.toLowerCase() });
 }
 
 export async function getWooperAccount(day) {
   const result = await client
-    .db("wooper")
+    .db(db)
     .collection("accounts")
     .findOne({ day: day.toLowerCase() });
   return result?.data ?? null;

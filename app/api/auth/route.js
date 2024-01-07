@@ -1,5 +1,5 @@
 import { days } from "@/app/days";
-import { saveWooper } from "@/app/mongo";
+import { saveWooper } from "@/app/api/mongo";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
